@@ -73,22 +73,22 @@ void opcontrol()
 			{
 				lv_label_set_text(state, "turning");
 				pros::delay(10);
-				backLeft.move(70);
-				frontLeft.move(70);
+				backLeft.move(50);
+				frontLeft.move(50);
 
-				backRight.move(-70);
-				frontRight.move(-70);
+				backRight.move(-50);
+				frontRight.move(-50);
 			}
 
 			if(val.x_middle_coord < -70)
 			{
 				lv_label_set_text(state, "turning");
 				pros::delay(10);
-				backLeft.move(-70);
-				frontLeft.move(-70);
+				backLeft.move(-50);
+				frontLeft.move(-50);
 
-				backRight.move(70);
-				frontRight.move(70);
+				backRight.move(50);
+				frontRight.move(50);
 			}
 			sens2.set_value(false);
 			sens.set_value(true);
@@ -123,6 +123,16 @@ void opcontrol()
 
 			sens.set_value(false);
 			sens2.set_value(true);
+		}
+		if(val.width == 0 && val.x_middle_coord == 0)
+		{
+			lv_label_set_text(state, "searching");
+			pros::delay(10);
+			backLeft.move(50);
+			frontLeft.move(50);
+
+			backRight.move(-50);
+			frontRight.move(-50);
 		}
 		pros::delay(20);
 	}
