@@ -21,10 +21,10 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 pros::Motor frontRight(1, pros::E_MOTOR_GEARSET_18, true);
 pros::Motor frontLeft(11, pros::E_MOTOR_GEARSET_18, false);
 
-pros::Motor backRight(20, pros::E_MOTOR_GEARSET_18, true);
-pros::Motor backLeft(10, pros::E_MOTOR_GEARSET_18, false);
+pros::Motor backRight(9, pros::E_MOTOR_GEARSET_18, true);
+pros::Motor backLeft(20, pros::E_MOTOR_GEARSET_18, false);
 
-pros::Vision vs(5, pros::E_VISION_ZERO_CENTER);
+pros::Vision vs(10, pros::E_VISION_ZERO_CENTER);
 
 
 pros::ADIDigitalOut sens(3, true);
@@ -56,6 +56,14 @@ void opcontrol()
  lv_obj_t * state =  lv_label_create(lv_scr_act(), NULL);
  lv_obj_align(state, NULL, LV_ALIGN_CENTER, 125, -25);
 
+ lv_obj_t * name =  lv_label_create(lv_scr_act(), NULL);
+ lv_obj_align(name, NULL, LV_ALIGN_CENTER, 125, 0);
+
+ lv_obj_t * name2 =  lv_label_create(lv_scr_act(), NULL);
+ lv_obj_align(name2, NULL, LV_ALIGN_CENTER, 125, 20);
+
+ lv_label_set_text(name, "Programmed by");
+ lv_label_set_text(name2, "Tad Keller");
 	while(true)
 	{
 
