@@ -42,6 +42,8 @@ void opcontrol()
 
 	vs.clear_led();
 
+	vs.set_led(COLOR_ORANGE);
+
 	vs.set_signature(1, &sig2);
 	LV_IMG_DECLARE(ball);
 	//extern const lv_img_t ball;
