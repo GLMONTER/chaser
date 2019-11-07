@@ -28,10 +28,6 @@ pros::Motor backLeft(9, pros::E_MOTOR_GEARSET_18, false);
 
 pros::Vision vs(1, pros::E_VISION_ZERO_CENTER);
 
-
-pros::ADIDigitalOut sens(3, true);
-pros::ADIDigitalOut sens2(2, true);
-
 void opcontrol()
 {
 	frontRight.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
@@ -42,7 +38,7 @@ void opcontrol()
 
 	vs.clear_led();
 
-	vs.set_led(COLOR_ORANGE);
+
 
 	vs.set_signature(1, &sig2);
 	LV_IMG_DECLARE(ball);
@@ -70,8 +66,10 @@ void opcontrol()
 
  lv_label_set_text(name, "Programmed by");
  lv_label_set_text(name2, "Tad Keller");
+
 	while(true)
 	{
+		vs.clear_led();
 
 		pros::vision_object_s_t val = vs.get_by_sig(0, 1);
 
@@ -93,7 +91,7 @@ void opcontrol()
 				backRight.move(-50);
 				frontRight.move(-50);
 			}
-
+			else
 			if(val.x_middle_coord < -70)
 			{
 				lv_label_set_text(state, "turning");
@@ -104,8 +102,8 @@ void opcontrol()
 				backRight.move(50);
 				frontRight.move(50);
 			}
-			sens2.set_value(false);
-			sens.set_value(true);
+			vs.set_led(COLOR_ORANGE);
+
 			continue;
 		}
 		else
@@ -121,8 +119,8 @@ void opcontrol()
 			backRight.move(90);
 			frontRight.move(90);
 
-			sens2.set_value(false);
-			sens.set_value(true);
+			vs.set_led(COLOR_ORANGE);
+
 		}
 	}
 	if((!(val.width < 100 && val.width != 0) && !(val.x_middle_coord > 70 || val.x_middle_coord < -70)) || (val.x_middle_coord < -300 || val.x_middle_coord > 300))
@@ -135,8 +133,8 @@ void opcontrol()
 			backRight.move_velocity(0);
 			frontRight.move_velocity(0);
 
-			sens.set_value(false);
-			sens2.set_value(true);
+			vs.set_led(COLOR_GREEN);
+
 		}
 		if(val.width == 0 && val.x_middle_coord == 0)
 		{
@@ -147,6 +145,8 @@ void opcontrol()
 
 			backRight.move(-50);
 			frontRight.move(-50);
+
+			vs.set_led(COLOR_ORANGE);
 		}
 		pros::delay(20);
 	}
