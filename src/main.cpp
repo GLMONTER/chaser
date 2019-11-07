@@ -120,7 +120,6 @@ void opcontrol()
 			frontRight.move(90);
 
 			vs.set_led(COLOR_ORANGE);
-
 		}
 	}
 	if((!(val.width < 100 && val.width != 0) && !(val.x_middle_coord > 70 || val.x_middle_coord < -70)) || (val.x_middle_coord < -300 || val.x_middle_coord > 300))
@@ -136,7 +135,7 @@ void opcontrol()
 			vs.set_led(COLOR_GREEN);
 
 		}
-		if(val.width == 0 && val.x_middle_coord == 0)
+		if(val.width == 0 && (val.x_middle_coord == 0 || val.x_middle_coord == -31371))
 		{
 			lv_label_set_text(state, "searching");
 			pros::delay(10);
